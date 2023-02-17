@@ -1,8 +1,6 @@
-import 'package:first_flutter_app/test_widgets/test_file.dart';
+import 'package:first_flutter_app/models/count_down_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../models/time_model.dart';
 
 class SettingScreen extends StatefulWidget {
   static const String routeName = '/setting-screen';
@@ -16,8 +14,7 @@ class _SettingScreenState extends State<SettingScreen> {
   double relaxTime = 5;
   @override
   Widget build(BuildContext context) {
-    var dataTime = Provider.of<TestTimeModel>(context, listen: false);
-
+    var dataTime = Provider.of<CountDownModel>(context, listen: false);
 
     return Scaffold(
         appBar: AppBar(
@@ -75,9 +72,6 @@ class _SettingScreenState extends State<SettingScreen> {
                 onChanged: (value) {
                   setState(() => relaxTime = value);
                 },
-                // onChanged: (value) {
-                //   setState(() => relaxTime = value);
-                // },
               ),
               const SizedBox(
                 height: 10,
@@ -85,9 +79,9 @@ class _SettingScreenState extends State<SettingScreen> {
               ElevatedButton(
                   onPressed: () {
                     dataTime.setTime(
-                        learnTime: learnTime.toInt(),
-                        relaxTime: relaxTime.toInt());
-                        Navigator.of(context).pop();
+                        learnTime: (learnTime).toInt(),
+                        relaxTime: (relaxTime).toInt());
+                    Navigator.of(context).pop();
                     // print(dataTime.time);
                   },
                   child: const Text('Save'))
