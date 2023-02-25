@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:audioplayers/audioplayers.dart';
 
 import '../widgets/my_dialog.dart';
 
@@ -12,6 +13,13 @@ class CountDownModel with ChangeNotifier {
   int _relaxTime = 5;
   int get learnTime => _learnTime;
   int get relaxTime => _relaxTime;
+  final _audioPlayer = AudioPlayer();
+  Future<void> playSound() async {
+    for (int i = 0; i < 2; i++) {
+      await _audioPlayer.play(AssetSource('sounds/ga_gay.mp3'));
+      //need to play two times
+    }
+  }
 
   void setTime({required int learnTime, required int relaxTime}) {
     _learnTime = learnTime;
@@ -64,6 +72,7 @@ class CountDownModel with ChangeNotifier {
             startRelaxTime(context);
           });
         }
+        playSound();
       }
     });
   }
@@ -86,8 +95,8 @@ class CountDownModel with ChangeNotifier {
       notifyListeners();
       return;
     }
-      _timer?.cancel();
-    
+    _timer?.cancel();
+
     _timeRemaining = learnTime;
     notifyListeners();
   }

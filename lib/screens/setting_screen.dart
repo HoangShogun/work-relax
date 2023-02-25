@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:first_flutter_app/models/count_down_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,11 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   double learnTime = 25;
   double relaxTime = 5;
+  final cache= AudioPlayer();
+  Future<void> playSound()async{
+    
+    cache.play(AssetSource('sounds/ga_gay.mp3'));
+  }
   @override
   Widget build(BuildContext context) {
     var dataTime = Provider.of<CountDownModel>(context, listen: false);
@@ -77,7 +83,8 @@ class _SettingScreenState extends State<SettingScreen> {
                 height: 10,
               ),
               ElevatedButton(
-                  onPressed: () {
+                  onPressed: ()async {
+                    playSound();
                     dataTime.setTime(
                         learnTime: (learnTime).toInt()*60,
                         relaxTime: (relaxTime).toInt()*60);
