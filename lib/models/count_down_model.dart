@@ -23,7 +23,6 @@ class CountDownModel with ChangeNotifier {
 
   int get timeRemaining => _timeRemaining;
 
-
   bool get isRunning => _isRunning;
 
   bool get isRelaxTime => _isRelaxTime;
@@ -43,14 +42,12 @@ class CountDownModel with ChangeNotifier {
     notifyListeners();
   }
 
-  
   void startTimer(BuildContext context) {
     isRunning = true;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       timeRemaining--;
       if (_timeRemaining <= 0) {
         if (isRelaxTime) {
-          
           stopTimer();
           Future.delayed(
                   Duration.zero, () => showMyDialog(context, isRelaxTime))
@@ -84,7 +81,7 @@ class CountDownModel with ChangeNotifier {
 
   void resetTimer() {
     isRunning = false;
-    if(_timer ==null){
+    if (_timer == null) {
       _timeRemaining = learnTime;
       notifyListeners();
       return;

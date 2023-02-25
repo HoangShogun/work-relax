@@ -79,8 +79,8 @@ class _SettingScreenState extends State<SettingScreen> {
               ElevatedButton(
                   onPressed: () {
                     dataTime.setTime(
-                        learnTime: (learnTime).toInt(),
-                        relaxTime: (relaxTime).toInt());
+                        learnTime: (learnTime).toInt()*60,
+                        relaxTime: (relaxTime).toInt()*60);
                     Navigator.of(context).pop();
                     // print(dataTime.time);
                   },
